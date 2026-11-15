@@ -1,0 +1,22 @@
+name: Build and SEO checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        indexable: ['false', 'true']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci
+      - run: npm run build
+        env:
+          SITE_URL: https://cimmple.com
+          SEO_INDEXABLE: ${{ matrix.indexable }}
+      - run: npm run check

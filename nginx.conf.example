@@ -1,0 +1,14 @@
+# Put dist/ contents in /var/www/cimmple. Configure HTTPS certificates separately.
+server {
+    listen 80;
+    server_name cimmple.com www.cimmple.com;
+    return 301 https://cimmple.com$request_uri;
+}
+# Within your HTTPS server for cimmple.com:
+# root /var/www/cimmple;
+# index index.html;
+# error_page 404 /404.html;
+# location = /404.html { internal; }
+# location / { try_files $uri $uri/ =404; }
+# location /assets/ { expires 1y; add_header Cache-Control "public, immutable"; }
+# Configure a separate www HTTPS server redirecting to https://cimmple.com$request_uri.

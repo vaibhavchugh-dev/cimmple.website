@@ -1,0 +1,1 @@
+{"name":"cimmple-website","version":"1.0.0","private":true,"type":"module","scripts":{"dev":"vite --host 0.0.0.0","build":"vite build && vite build --ssr src/entry-server.jsx --outDir .ssr && node scripts/prerender.mjs","preview":"node scripts/serve.mjs","check":"node scripts/check.mjs"},"dependencies":{"react":"^19.3.1","react-dom":"^19.3.1"},"devDependencies":{"vite":"^7.2.2"}}
