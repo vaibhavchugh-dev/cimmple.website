@@ -8,6 +8,7 @@ jobs:
     strategy:
       matrix:
         indexable: ['false', 'true']
+        base: ['/', '/newdesign/']
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
@@ -18,5 +19,6 @@ jobs:
       - run: npm run build
         env:
           SITE_URL: https://cimmple.com
+          SITE_BASE_PATH: ${{ matrix.base }}
           SEO_INDEXABLE: ${{ matrix.indexable }}
       - run: npm run check
