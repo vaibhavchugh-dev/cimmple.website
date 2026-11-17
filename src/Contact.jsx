@@ -1,5 +1,6 @@
 import {withBase} from './paths.js';
 import React,{useState} from 'react';
+<<<<<<< HEAD
 import {company} from './company.js';
 
 const mapsEmbedSrc='https://maps.google.com/maps?q='+company.mapsLat+','+company.mapsLng+'&hl=en&z=16&output=embed';
@@ -105,3 +106,15 @@ function Contact(){
 }
 
 export default Contact;
+=======
+export default function Contact({partnership=false}){
+ const [status,setStatus]=useState('');const [busy,setBusy]=useState(false);
+ const endpoint=import.meta.env.VITE_CONTACT_ENDPOINT;
+ async function submit(e){
+  e.preventDefault();const form=e.currentTarget;const data=Object.fromEntries(new FormData(form));if(data.website)return;
+  if(!endpoint){const body=Object.entries(data).filter(([k])=>k!=='website').map(([k,v])=>k+': '+v).join('\n');window.location.href='mailto:contact@cimmple.com?subject='+encodeURIComponent(partnership?'Cimmple partnership enquiry':'Cimmple discovery call enquiry')+'&body='+encodeURIComponent(body);setStatus('Your email app will open with a draft. Please send it to complete your enquiry. If it does not open, email contact@cimmple.com directly.');return}
+  setBusy(true);setStatus('');try{const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});if(!r.ok)throw Error();setStatus('Thank you. Your enquiry has been submitted.');form.reset()}catch{setStatus('Your enquiry could not be sent. Please email contact@cimmple.com.')}finally{setBusy(false)}
+ }
+ return <div className="contact-layout"><div><p className="eyebrow">{partnership?'LET’S GROW TOGETHER':'BOOK A DISCOVERY CALL'}</p><h2>{partnership?'Tell us about your partnership idea.':'What would you like to make better?'}</h2><p>{partnership?'Share your experience, the businesses you work with, and how you would like to collaborate.':'Share your business goals, current systems, and a preferred time and time zone for a conversation. We will reply by email to arrange a call.'}</p><h3>Cimmplex Innovations LLP</h3><p>Faridabad, Haryana, India</p><p><a href="mailto:contact@cimmple.com">contact@cimmple.com</a></p><p>Please avoid sharing passwords, financial account details, or sensitive personal information.</p></div><form onSubmit={submit}><label>Your name<input name="name" autoComplete="name" required maxLength="120"/></label><label>Work email<input name="email" autoComplete="email" type="email" required maxLength="254"/></label><label>Company<input name="company" autoComplete="organization" maxLength="160"/></label>{partnership&&<><label>Partnership type<select name="partnershipType" required defaultValue=""><option value="" disabled>Select a partnership type</option><option>Referral Partner</option><option>Sales / Business Partner</option><option>Technology Partner</option></select></label><label>LinkedIn or company website (optional)<input name="profile" type="url" placeholder="https://" maxLength="300"/></label></>}<label>{partnership?'Your experience and proposed collaboration':'About your project and preferred call time'}<textarea name="message" rows="5" minLength="20" maxLength="1500" required/></label><label className="trap" aria-hidden="true">Website<input name="website" tabIndex="-1" autoComplete="off"/></label><p className="small">Read how enquiry information is handled in our <a href={withBase('/privacy/')}>privacy notice</a>.</p>{!endpoint&&<p className="notice">This opens a draft in your email app. Review it and send it to contact@cimmple.com.</p>}<button className="button" disabled={busy}>{busy?'Sending…':endpoint?'Send enquiry ↗':'Prepare enquiry email ↗'}</button><p role="status">{status}</p></form></div>
+}
+>>>>>>> 1e38c17265dd2737bb56afe2b213f81ecc960a48

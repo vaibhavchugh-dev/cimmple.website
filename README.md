@@ -1,6 +1,6 @@
 # Cimmple website
 
-React 19 + Vite company website with 47 pre-rendered routes. Original Cimmple content organized around services, industries, solutions, dedicated teams, and insights. Hospitality is excluded. No product catalogue, invented client logos, testimonials, certifications, or completed-project claims.
+React 19 + Vite company website with 49 pre-rendered routes. Original Cimmple content organized around services, industries, solutions, dedicated teams, and insights. Hospitality is excluded. No product catalogue, invented client logos, testimonials, certifications, or completed-project claims.
 
 ## Local setup
 
@@ -66,9 +66,9 @@ Rebuild after editing content. Industry and solution pages describe potential ca
 
 ## Contact form
 
-The form is disabled until `VITE_CONTACT_ENDPOINT` is configured at build time. The endpoint must accept JSON `{name,email,company,message,website}` and return a successful 2xx response only after accepting an enquiry. No API keys belong in VITE variables: these are public client values. The backend must implement input validation, rate limits, appropriate CORS, spam protection, and privacy/retention handling. The hidden website field is only a basic honeypot.
+Without `VITE_CONTACT_ENDPOINT`, the form prepares an email draft for the visitor to send. An online submission endpoint can be configured at build time. The endpoint must accept JSON `{name,email,company,message,website}` and return a successful 2xx response only after accepting an enquiry. No API keys belong in VITE variables: these are public client values. The backend must implement input validation, rate limits, appropriate CORS, spam protection, and privacy/retention handling. The hidden website field is only a basic honeypot.
 
-Before accepting enquiries, replace the draft privacy notice with business-approved information and publish verified company contact details. The project does not invent an email address or postal address. No backend service, database, email delivery, or analytics is included.
+Company contact details and an enquiry privacy notice are included. Review that notice against actual providers, retention practices, and applicable requirements before connecting any online enquiry service. No backend service, database, email delivery, or analytics is included.
 
 ## Verification
 
@@ -119,3 +119,10 @@ Open `http://localhost:4173/newdesign/` for the built preview. Upload **everythi
 When the new website is ready to replace the root site, use `npm run build:root` and upload the resulting `dist/` contents to the domain root. This profile uses `/` and enables production indexing, retaining page-specific exclusions. Any other folder can be configured through `SITE_BASE_PATH` followed by `npm run build`. Root and `/newdesign/` are separate builds: never mix their generated assets or HTML.
 
 The host must serve static CSS/JS/image/font files with the correct MIME types, resolve nested directories to `index.html`, and return a real 404 for unknown URLs. Clear stale HTML caches or use a hard refresh after replacing the files. A server-wide rewrite must not intercept existing files in the newdesign folder. No FTP or server changes have been performed by this project update.
+
+## Company, partners and onboarding
+
+Company identity: Cimmplex Innovations LLP, Faridabad, Haryana, India; contact@cimmple.com. No street address or phone has been supplied.
+`/partners/` covers referral, sales/business and technology enquiries; commercial terms are agreed individually. Without `VITE_CONTACT_ENDPOINT`, forms prepare a draft in the visitor's own email app and clearly require the visitor to send it. They do not report successful delivery. With an endpoint configured, contact and partnership payloads must be supported and the privacy notice reviewed against the actual service.
+`/get-started/` offers email-assisted signup until an HTTPS `VITE_SIGNUP_URL` is supplied. Setting that variable before building enables the application link. This website does not implement accounts, trials, billing, or payments, and does not publish duration or pricing.
+Empty resource and careers pages are omitted from navigation and excluded from indexing. Technology Ecosystem remains a substantive technology overview, without placeholder certification content. No fabricated client evidence or team profiles have been added.

@@ -26,6 +26,13 @@ for(const p of pages){
  if(['service','industry','solution'].includes(p.kind)){for(const id of(p.kind==='solution'?['overview','capabilities','workflow','integrations','impact','faqs']:['overview','approach','capabilities','advantage','impact','insights','faqs']))assert(ids.has(id),'Missing section '+p.path+' '+id);}
  count++;
 }
+for(const route of ['/','/contact/','/partners/','/get-started/']){
+ const html=await readFile('dist'+(route==='/'?'':route)+'/index.html','utf8');
+ assert(html.includes('mailto:contact@cimmple.com'),'Missing enquiry email on '+route);
+ for(const removed of ['/careers/','/insights/case-studies/','/insights/webinars/','/insights/events/','/insights/news/'])assert(!html.includes('href="'+publicPath(removed)+'"'),'Empty page promoted: '+removed);
+ const graph=JSON.parse(html.match(/<script type="application\/ld\+json">(.*?)<\/script>/s)[1])['@graph'];
+ const org=graph.find(x=>x['@type']==='Organization');assert.equal(org.legalName,'Cimmplex Innovations LLP');assert.equal(org.email,'contact@cimmple.com');assert.equal(org.address.addressLocality,'Faridabad');
+}
 const home=await readFile('dist/index.html','utf8');const cssFiles=[...home.matchAll(/href="([^"]+\.css)"/g)].map(x=>x[1]);assert(cssFiles.length);
 for(const file of cssFiles){const css=await readFile(diskPath(file),'utf8');for(const m of css.matchAll(/url\((?:["']?)([^)"']+)(?:["']?)\)/g)){const value=m[1];if(value.startsWith('/')){assert(value.startsWith(basePath),'CSS asset outside base: '+value);await access(diskPath(value));}else if(!value.startsWith('data:')&&!value.startsWith('http')){const u=new URL(value,'https://example.test'+file);await access(diskPath(u.pathname));}}}
 const map=await readFile('dist/sitemap.xml','utf8');for(const p of pages.filter(p=>!p.noindex&&p.kind!=='resource'&&p.path!=='/privacy/'))assert(map.includes(origin+publicPath(p.path)+'</loc>'));

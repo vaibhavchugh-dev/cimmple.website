@@ -24,8 +24,10 @@ export const pages = [
 {path:'/insights/',name:'Insights',description:'Practical articles on software modernization, data quality, and business automation.'},
 {path:'/insights/blog/',name:'Blog',description:'Read practical perspectives on software engineering, modernization, and automation.'},
 ...articles.map(a=>({path:'/insights/blog/'+a.slug+'/',description:a.intro,...a,kind:'article'})),
-...['Case Studies','Webinars','Events','News'].map(n=>({path:'/insights/'+slugify(n)+'/',name:n,description:'Cimmple '+n.toLowerCase()+' and updates.',kind:'resource'})),
-{path:'/careers/',name:'Work With Us',description:'Explore how to introduce yourself and discuss future opportunities with Cimmple.'},
+...['Case Studies','Webinars','Events','News'].map(n=>({path:'/insights/'+slugify(n)+'/',name:n,description:'Cimmple '+n.toLowerCase()+' and updates.',kind:'resource',noindex:true})),
+{path:'/careers/',name:'Work With Us',noindex:true,description:'Explore how to introduce yourself and discuss future opportunities with Cimmple.'},
+{path:'/partners/',name:'Become a Partner',description:'Explore referral, sales and technology partnerships with Cimmplex Innovations LLP. Discuss opportunities and commercial terms with our team.'},
+{path:'/get-started/',name:'Get Started',description:'Get started with Cimmple: request application signup access, discuss a custom software solution, or explore a business partnership.'},
 {path:'/contact/',name:'Get in Touch',description:'Tell Cimmple about your software project, integration needs, or application modernization plans.'},
 {path:'/privacy/',name:'Privacy',description:'How Cimmplex Innovations LLP handles website information and project enquiries for Cimmple.'},
 {path:'/404/',name:'Page not found',description:'The requested page could not be found.',noindex:true}
