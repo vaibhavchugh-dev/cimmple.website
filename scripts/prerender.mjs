@@ -21,7 +21,7 @@ for(const p of pages){
  const bits=p.path.split('/').filter(Boolean);
  for(let i=1;i<=bits.length;i++){const path='/'+bits.slice(0,i).join('/')+'/';const parent=pages.find(x=>x.path===path);if(parent&&path!=='/')crumbs.push({name:parent.name,url:absolute(path)})}
  const schema={'@context':'https://schema.org','@graph':[
- {'@type':'Organization','@id':siteRoot+'#organization',name:'Cimmple',url:siteRoot,logo:absolute('/brand/cimmple-logo.png')},
+ {'@type':'Organization','@id':siteRoot+'#organization',name:'Cimmple',legalName:'Cimmplex Innovations LLP',email:'contact@cimmple.com',address:{'@type':'PostalAddress',addressLocality:'Faridabad',addressRegion:'Haryana',addressCountry:'IN'},contactPoint:{'@type':'ContactPoint',contactType:'business enquiries',email:'contact@cimmple.com'},url:siteRoot,logo:absolute('/brand/cimmple-logo.png')},
  {'@type':'WebSite','@id':siteRoot+'#website',name:'Cimmple',url:siteRoot,publisher:{'@id':siteRoot+'#organization'}},
  {'@type':'WebPage','@id':canonical+'#webpage',name:p.name,description:p.description,url:canonical,isPartOf:{'@id':siteRoot+'#website'}},
  ...(p.kind==='article'?[{'@type':'Article',headline:p.name,description:p.description,mainEntityOfPage:{'@id':canonical+'#webpage'},author:{'@id':siteRoot+'#organization'},publisher:{'@id':siteRoot+'#organization'},image:absolute('/og-image.png')}]:[]),
