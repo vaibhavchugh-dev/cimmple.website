@@ -27,7 +27,7 @@ export const pages = [
 ...['Case Studies','Webinars','Events','News'].map(n=>({path:'/insights/'+slugify(n)+'/',name:n,description:'Cimmple '+n.toLowerCase()+' and updates.',kind:'resource'})),
 {path:'/careers/',name:'Work With Us',description:'Explore how to introduce yourself and discuss future opportunities with Cimmple.'},
 {path:'/contact/',name:'Get in Touch',description:'Tell Cimmple about your software project, integration needs, or application modernization plans.'},
-{path:'/privacy/',name:'Privacy',description:'How this website handles information and project enquiries.'},
+{path:'/privacy/',name:'Privacy',description:'How Cimmplex Innovations LLP handles website information and project enquiries for Cimmple.'},
 {path:'/404/',name:'Page not found',description:'The requested page could not be found.',noindex:true}
 ];
 export const getPage = path => pages.find(p=>p.path===path) || pages.at(-1);

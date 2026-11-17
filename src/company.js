@@ -1,0 +1,20 @@
+export const company = {
+  brand: 'Cimmple',
+  legalName: 'Cimmplex Innovations LLP',
+  email: 'contact@cimmple.com',
+  addressLines: [
+    '208 Trump Tower, Omaxe New Heights',
+    'Sector 78, Faridabad, Haryana 121010',
+    'India',
+  ],
+  addressLocality: 'Faridabad',
+  addressRegion: 'Haryana',
+  postalCode: '121010',
+  addressCountry: 'IN',
+  streetAddress: '208 Trump Tower, Omaxe New Heights, Sector 78',
+  mapsQuery: '208 Trump Tower, Omaxe New Heights, Sector 78, Faridabad, Haryana 121010, India',
+  mapsLat: 28.385005,
+  mapsLng: 77.36895,
+  markets: 'United States, Canada, and India',
+  responsePromise: 'We typically reply within one business day.',
+};
