@@ -4,11 +4,8 @@ export {solutions} from './solutions.js';
 import {solutions} from './solutions.js';
 export const teams = ['MVP','AI','Data','Cloud','Product Engineering','ERP','Automation','Integration','Custom'];
 export const slugify = s => s.toLowerCase().replaceAll(' ','-');
-export const articles = [
-{slug:'planning-a-legacy-modernization',name:'A practical starting point for legacy modernization',intro:'Before replacing a business application, understand the workflows and dependencies it supports.',sections:[['Map the working system','Document business-critical flows, integrations, scheduled tasks, and data ownership. Include the behavior users rely on, even when it is not documented.'],['Choose a bounded first step','Start with a module whose dependencies can be understood and tested. Define the expected behavior and a rollback approach before moving traffic.'],['Validate the transition','Reconcile migrated data, test representative user workflows, and monitor failures after release. Modernization should be measured against business continuity as well as technical progress.']]},
-{slug:'making-business-data-useful',name:'Make business data useful before building more reports',intro:'Reliable reporting starts with clear definitions and consistent source data.',sections:[['Agree on definitions','Define measures, reporting periods, and ownership with the people who use the reports. Two dashboards cannot agree if they calculate revenue differently.'],['Check the source','Look for duplicates, missing values, inconsistent identifiers, and delayed updates. Add validation close to the source and make exceptions visible.'],['Build for a decision','Design each report around a question and the action it supports. A smaller set of trusted measures is often more useful than a large dashboard.']]},
-{slug:'choosing-automation-workflows',name:'Where to begin with workflow automation',intro:'Good automation starts with a well-understood process and a clear exception path.',sections:[['Find repeated work','Look for repeated data entry, document classification, notifications, and routine reconciliation. Estimate time spent and the cost of errors.'],['Define the exception path','Decide what happens when inputs are incomplete or a system is unavailable. Give people a way to review, correct, and retry work.'],['Measure the outcome','Track completion time, error rates, and manual interventions before and after implementation. Use those results to choose the next improvement.']]}
-];
+export {articles} from './articles.js';
+import {articles} from './articles.js';
 export const pages = [
 {path:'/',name:'Home',description:'Cimmple builds custom software, modernizes business platforms, and connects data, cloud infrastructure, and workflows.'},
 {path:'/about/',name:'Who We Are',description:'Learn how Cimmple approaches software development, business applications, and technology modernization.'},
@@ -18,10 +15,12 @@ export const pages = [
 ...industries.map(s=>({path:'/industries/'+s.slug+'/',description:s.intro,...s,kind:'industry'})),
 {path:'/solutions/',name:'Solutions',description:'Explore ERP, inventory and warehouse management, e-commerce platforms, logistics systems, reporting and analytics, workflow automation, and system integration solutions.'},
 ...solutions.map(s=>({path:'/solutions/'+s.slug+'/',...s,kind:'solution'})),
+{path:'/products/',name:'Products',description:'Explore Cimmple software products: CimmpleFlow machine shop ERP and CimmplePay payroll and HR software.'},
+{path:'/products/cimmpleflow/',name:'CimmpleFlow',description:'CimmpleFlow is cloud ERP for CNC shops and precision manufacturers: quoting, purchasing, production, quality, inventory, and accounting.',kind:'product'},
+{path:'/products/cimmplepay/',name:'CimmplePay',description:'CimmplePay is payroll and HR software for growing businesses: payroll calculations, pay stubs, employee self-service, time, and leave.',kind:'product'},
 {path:'/dedicated-teams/',name:'Dedicated Teams',description:'Explore focused software delivery teams for MVPs, AI, data, cloud, ERP, automation, and integrations.'},
-...teams.map(t=>({path:'/dedicated-teams/'+slugify(t)+'/',name:t+' Team',description:'Plan a focused '+t.toLowerCase()+' delivery team around your business goals, scope, and technical needs.',kind:'team',features:['Discovery and scope','Delivery planning','Implementation and review','Handover and support']})),
 {path:'/alliances/',name:'Technology Ecosystem',description:'Explore technologies that can support Cimmple software development and integration projects.'},
-{path:'/insights/',name:'Insights',description:'Practical articles on software modernization, data quality, and business automation.'},
+{path:'/insights/',name:'Insights',noindex:true,description:'Practical articles on software modernization, data quality, and business automation.'},
 {path:'/insights/blog/',name:'Blog',description:'Read practical perspectives on software engineering, modernization, and automation.'},
 ...articles.map(a=>({path:'/insights/blog/'+a.slug+'/',description:a.intro,...a,kind:'article'})),
 ...['Case Studies','Webinars','Events','News'].map(n=>({path:'/insights/'+slugify(n)+'/',name:n,description:'Cimmple '+n.toLowerCase()+' and updates.',kind:'resource',noindex:true})),

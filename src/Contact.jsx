@@ -17,7 +17,7 @@ export default function Contact({partnership=false}){
     if(data.website)return;
     if(!endpoint){
       const body=Object.entries(data).filter(([k])=>k!=='website').map(([k,v])=>k+': '+v).join('\n');
-      window.location.href='mailto:'+company.email+'?subject='+encodeURIComponent(partnership?'Cimmple partnership enquiry':'Cimmple discovery call enquiry')+'&body='+encodeURIComponent(body);
+      window.location.href='mailto:'+company.email+'?subject='+encodeURIComponent(partnership?'Cimmple partnership enquiry':'Cimmple conversation request')+'&body='+encodeURIComponent(body);
       setStatus('Your email app will open with a draft. Please send it to complete your enquiry. If it does not open, email '+company.email+' directly.');
       return;
     }
@@ -39,7 +39,7 @@ export default function Contact({partnership=false}){
     <div className="contact-page">
       <div className="contact-layout">
         <div className="contact-intro">
-          <p className="eyebrow">{partnership?'LET’S GROW TOGETHER':'BOOK A DISCOVERY CALL'}</p>
+          <p className="eyebrow">{partnership?'TELL US ABOUT YOU':'BOOK A CONVERSATION'}</p>
           <h2>{partnership?'Tell us about your partnership idea.':'What would you like to make better?'}</h2>
           <p>{partnership?'Share your experience, the businesses you work with, and how you would like to collaborate.':'Share your business goals, current systems, and a preferred time and time zone for a conversation. We will reply by email to arrange a call.'}</p>
           <p>Please avoid sharing passwords, financial account details, or sensitive personal information.</p>
@@ -112,8 +112,3 @@ export default function Contact({partnership=false}){
     </div>
   );
 }
-<<<<<<< HEAD
-=======
-
-export default Contact;
->>>>>>> 50d33cced94115e5758090cc037421faceb73114
