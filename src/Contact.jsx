@@ -112,3 +112,8 @@ export default function Contact({partnership=false}){
     </div>
   );
 }
+<<<<<<< HEAD
+=======
+
+export default Contact;
+>>>>>>> 50d33cced94115e5758090cc037421faceb73114
