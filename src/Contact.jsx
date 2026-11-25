@@ -1,9 +1,6 @@
 import {withBase} from './paths.js';
 import React,{useState} from 'react';
-import {company} from './company.js';
-
-const mapsEmbedSrc='https://maps.google.com/maps?q='+company.mapsLat+','+company.mapsLng+'&hl=en&z=16&output=embed';
-const mapsLink='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(company.mapsQuery);
+import {company,mapsEmbedSrc,mapsLink} from './company.js';
 
 export default function Contact({partnership=false}){
   const [status,setStatus]=useState('');

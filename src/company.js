@@ -1,6 +1,7 @@
 export const company = {
   brand: 'Cimmple',
   legalName: 'Cimmplex Innovations LLP',
+  identificationNumber: 'ACO-4148',
   email: 'contact@cimmple.com',
   addressLines: [
     '208 Trump Tower, Omaxe New Heights',
@@ -18,3 +19,6 @@ export const company = {
   markets: 'United States, Canada, and India',
   responsePromise: 'We typically reply within one business day.',
 };
+
+export const mapsEmbedSrc='https://maps.google.com/maps?q='+company.mapsLat+','+company.mapsLng+'&hl=en&z=16&output=embed';
+export const mapsLink='https://www.google.com/maps/search/?api=1&query='+encodeURIComponent(company.mapsQuery);
