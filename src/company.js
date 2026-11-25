@@ -18,6 +18,7 @@ export const company = {
   mapsLng: 77.36895,
   markets: 'United States, Canada, and India',
   responsePromise: 'We typically reply within one business day.',
+  privacyUpdated: '25 November 2026',
 };
 
 export const mapsEmbedSrc='https://maps.google.com/maps?q='+company.mapsLat+','+company.mapsLng+'&hl=en&z=16&output=embed';

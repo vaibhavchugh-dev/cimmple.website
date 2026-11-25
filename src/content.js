@@ -4,7 +4,7 @@ export {solutions} from './solutions.js';
 import {solutions} from './solutions.js';
 export const teams = ['MVP','AI','Data','Cloud','Product Engineering','ERP','Automation','Integration','Custom'];
 export const slugify = s => s.toLowerCase().replaceAll(' ','-');
-export {articles} from './articles.js';
+export {articles,formatDate} from './articles.js';
 import {articles} from './articles.js';
 export const pages = [
 {path:'/',name:'Home',description:'Cimmple builds custom software, modernizes business platforms, and connects data, cloud infrastructure, and workflows.'},

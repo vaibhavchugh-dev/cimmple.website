@@ -22,6 +22,10 @@ for(const p of pages){
   const route='/'+url.slice(basePath.length);assert(pages.some(p=>p.path===route),'Broken link '+url+' on '+p.path);
  }
  assert(!/hospitality/i.test(html));
+ assert(!/<iframe[^>]+src="[^"]*google\./i.test(html),'Third-party map must load only after the visitor chooses to show it: '+p.path);
+ if(p.kind==='article'){assert(/"datePublished":"\d{4}-\d{2}-\d{2}"/.test(html),'Article needs datePublished: '+p.path);assert(html.includes('class="byline"'),'Article needs a byline: '+p.path)}
+ if(p.path==='/')assert(html.includes('"Identification Number"')&&html.includes('ACO-4148'),'Organization schema needs the identification number');
+ if(p.path==='/privacy/')assert(/Last updated:/.test(html)&&/Google Maps/.test(html),'Privacy notice needs a date and the map disclosure');
  const noindex=!indexable||p.kind==='resource'||p.noindex||p.path==='/privacy/';assert(html.includes('content="'+(noindex?'noindex,follow':'index,follow')+'"'));
  if(['service','industry','solution'].includes(p.kind)){for(const id of(p.kind==='solution'?['overview','capabilities','workflow','integrations','impact','faqs']:['overview','approach','capabilities','advantage','impact','insights','faqs']))assert(ids.has(id),'Missing section '+p.path+' '+id);}
  count++;

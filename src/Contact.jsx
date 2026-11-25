@@ -1,6 +1,7 @@
 import {withBase} from './paths.js';
 import React,{useState} from 'react';
-import {company,mapsEmbedSrc,mapsLink} from './company.js';
+import {company,mapsLink} from './company.js';
+import MapEmbed from './MapEmbed.jsx';
 
 export default function Contact({partnership=false}){
   const [status,setStatus]=useState('');
@@ -96,13 +97,7 @@ export default function Contact({partnership=false}){
             </a>
           </div>
           <div className="contact-map">
-            <iframe
-              title={'Map showing '+company.legalName+' office'}
-              src={mapsEmbedSrc}
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
+            <MapEmbed/>
           </div>
         </section>
       )}

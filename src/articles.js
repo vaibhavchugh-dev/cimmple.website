@@ -1,7 +1,12 @@
 // Each section is [heading, blocks]; a block is a paragraph string or {list:[...]}.
+// `published` is an ISO date (YYYY-MM-DD); `author` is shown as the byline.
+export const formatDate=d=>new Date(d+'T00:00:00Z').toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric',timeZone:'UTC'});
+
 export const articles = [
 {
 slug:'planning-a-legacy-modernization',
+author:'Cimmple team',
+published:'2026-11-25',
 name:'A practical starting point for legacy modernization',
 intro:'Before replacing a business application, understand the workflows and dependencies it supports. A bounded first step is safer, cheaper, and easier to prove than a full rewrite.',
 sections:[
@@ -74,6 +79,8 @@ sections:[
 },
 {
 slug:'making-business-data-useful',
+author:'Cimmple team',
+published:'2026-11-25',
 name:'Make business data useful before building more reports',
 intro:'Reliable reporting starts with clear definitions and consistent source data. More dashboards rarely fix numbers that people do not trust.',
 sections:[
@@ -150,6 +157,8 @@ sections:[
 },
 {
 slug:'choosing-automation-workflows',
+author:'Cimmple team',
+published:'2026-11-25',
 name:'Where to begin with workflow automation',
 intro:'Good automation starts with a well-understood process and a clear exception path. Choosing the right first workflow matters more than choosing the right tool.',
 sections:[
