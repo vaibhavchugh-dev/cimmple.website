@@ -6,28 +6,24 @@ import MapEmbed from './MapEmbed.jsx';
 export default function Contact({partnership=false}){
   const [status,setStatus]=useState('');
   const [busy,setBusy]=useState(false);
-  const endpoint=import.meta.env.VITE_CONTACT_ENDPOINT;
+  const endpoint=import.meta.env.VITE_CONTACT_ENDPOINT||withBase('/send-email.php');
 
   async function submit(e){
     e.preventDefault();
     const form=e.currentTarget;
     const data=Object.fromEntries(new FormData(form));
     if(data.website)return;
-    if(!endpoint){
-      const body=Object.entries(data).filter(([k])=>k!=='website').map(([k,v])=>k+': '+v).join('\n');
-      window.location.href='mailto:'+company.email+'?subject='+encodeURIComponent(partnership?'Cimmple partnership enquiry':'Cimmple conversation request')+'&body='+encodeURIComponent(body);
-      setStatus('Your email app will open with a draft. Please send it to complete your enquiry. If it does not open, email '+company.email+' directly.');
-      return;
-    }
     setBusy(true);
     setStatus('');
     try{
-      const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(data)});
-      if(!r.ok)throw Error();
+      const payload={...data,enquiryType:partnership?'partnership':'conversation'};
+      const r=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+      const result=await r.json().catch(()=>null);
+      if(!r.ok||!result?.success)throw new Error(result?.message||'');
       setStatus('Thank you. Your enquiry has been submitted.');
       form.reset();
-    }catch{
-      setStatus('Your enquiry could not be sent. Please email '+company.email+' instead.');
+    }catch(err){
+      setStatus((err&&err.message)||('Your enquiry could not be sent. Please email '+company.email+' instead.'));
     }finally{
       setBusy(false);
     }
@@ -78,8 +74,7 @@ export default function Contact({partnership=false}){
           <label>{partnership?'Your experience and proposed collaboration':'About your project and preferred call time'}<textarea name="message" rows="5" minLength="20" maxLength="1500" required/></label>
           <label className="trap" aria-hidden="true">Website<input name="website" tabIndex="-1" autoComplete="off"/></label>
           <p className="small">Read how enquiry information is handled in our <a href={withBase('/privacy/')}>privacy notice</a>.</p>
-          {!endpoint&&<p className="notice">This opens a draft in your email app. Review it and send it to {company.email}.</p>}
-          <button className="button" disabled={busy}>{busy?'Sending…':endpoint?'Send enquiry ↗':'Prepare enquiry email ↗'}</button>
+          <button className="button" disabled={busy}>{busy?'Sending…':'Send enquiry ↗'}</button>
           <p role="status">{status}</p>
         </form>
       </div>

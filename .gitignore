@@ -2,3 +2,5 @@ node_modules/
 dist/
 .ssr/
 .env
+smtp-config.php
+public/smtp-config.php
